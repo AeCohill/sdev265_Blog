@@ -15,6 +15,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def user(self):
+        return self.author
 
     @property
     def upvotes_count(self):
