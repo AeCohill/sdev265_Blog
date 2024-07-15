@@ -93,3 +93,17 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+@login_required
+def my_profile(request):
+    return redirect('profile', username=request.user.username)
+
+
+def profile(request, username):
+    user = get_object_or_404(User, username=username)
+    posts = Post.objects.filter(author=user)
+    context = {
+        'profile_user': user,
+        'posts': posts
+    }
+    return render(request, 'blog/profile.html', context)
