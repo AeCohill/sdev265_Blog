@@ -40,11 +40,14 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
 
-def home(request):
-    return render(request, 'registration/login.html')
+def home(request, user):
+    if User.is_authenticated:
+        return render(request, 'blog/post_list.html')
+    else:
+        return render(request, 'registration/login.html')
 
-def author_detail(request, author_id):
-    author = get_object_or_404(User, pk=author_id)
+def author_detail(request, pk):
+    author = get_object_or_404(User, pk=pk)
     posts = Post.objects.filter(author=author)
     context = {
         'author': author,
