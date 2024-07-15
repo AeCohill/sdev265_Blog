@@ -18,12 +18,14 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 from django.contrib.auth import views as auth_views
 from blog import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('blog/', include('blog.urls')),
     path('login/', auth_views.LoginView.as_view(), name='login'),
-     path('post/<int:pk>/', views.post_detail, name='post_detail'),
+    #path('profile/', views.profile, name='profile'),
+    path('post/<int:pk>/', views.post_detail, name='post_detail'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('', RedirectView.as_view(url='login/', permanent=False)),  # Redirect root to login
 ]

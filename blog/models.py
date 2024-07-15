@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -15,6 +16,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def user(self):
+        return self.author
 
     @property
     def upvotes_count(self):
@@ -41,3 +45,10 @@ class Downvote(models.Model):
 
     class Meta:
         unique_together = ('post', 'user')
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+
+    def __str__(self):
+        return f'{self.user.username} Profile'
