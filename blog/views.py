@@ -93,3 +93,13 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+def profile(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    posts = Post.objects.filter(user=user)
+    context = {
+        'user': user,
+        'posts': posts
+    }
+    return render(request, 'blog/profile.html', context)
+

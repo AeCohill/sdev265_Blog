@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
     
+{% block content %}
 <body>
     <h2>Login</h2>
     <form method="post" action="{% url 'login' %}">
@@ -12,4 +13,5 @@
     </form>
     <p>Don't have an account? NOTE: DONOT USE REAL PERSONAL INFO ON THIS SITE <a href="{% url 'register' %}">Register here</a>.</p>
 </body>
+{% endblock %}
 </html>
