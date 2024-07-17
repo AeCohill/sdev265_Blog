@@ -16,7 +16,7 @@
                     <div class="article-metadata">
                         <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
                         <p>{{ post.text }}</p>
-                        <time>published: {{post.published_date}}<time> <p> By <a href="{% url 'author_detail' author.pk}"> {{post.author}} </a> </p>
+                        <time>published: {{post.published_date}}<time> <p> By <a href="/profile'"> {{post.author}} </a> </p>
                         <div class="votes">
                             <span>Upvotes: {{ post.upvotes.count }}</span>
                             <span>Downvotes: {{ post.downvotes.count }}</span>

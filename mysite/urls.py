@@ -21,11 +21,13 @@ from blog import views
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('blog/', include('blog.urls')),
-    path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('post/<int:pk>/', views.post_detail, name='post_detail'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('admin/', admin.site.urls),  # Admin site
+    path('accounts/', include('django.contrib.auth.urls')),  # Django authentication URLs
+    path('blog/', include('blog.urls')),  # Blog app URLs
+    path('profile/', views.my_profile, name='my_profile'),  # Redirect to logged-in user's profile
+    path('login/', auth_views.LoginView.as_view(), name='login'),  # Login view
+    path('profile/<str:adam1>/', views.profile, name='profile'),  # View other users' profiles
+    path('post/<int:pk>/', views.post_detail, name='post_detail'),  # Post detail view
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),  # Logout view
     path('', RedirectView.as_view(url='login/', permanent=False)),  # Redirect root to login
 ]
