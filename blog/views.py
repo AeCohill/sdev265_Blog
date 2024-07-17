@@ -107,3 +107,10 @@ def profile(request, username):
         'posts': posts
     }
     return render(request, 'blog/profile.html', context)
+
+def post_delete(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        post.delete()
+        return redirect('post_list')
+    return render(request, 'blog/post_confirm_delete.html', {'post': post})

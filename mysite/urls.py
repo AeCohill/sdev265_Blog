@@ -28,5 +28,7 @@ urlpatterns = [
     path('profile/<str:adam1>/', views.profile, name='profile'),  # View other users' profiles
     path('post/<int:pk>/', views.post_detail, name='post_detail'),  # Post detail view
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),  # Logout view
-    path('', RedirectView.as_view(url='login/', permanent=False)),  # Redirect root to login
+    path('', RedirectView.as_view(url='login/', permanent=False)),
+    path('post/edit/<int:pk>/', views.post_edit, name='post_edit'),
+    path('post/delete/<int:pk>/', views.post_delete, name='post_delete'),
 ]
