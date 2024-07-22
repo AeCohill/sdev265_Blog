@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Post, Upvote, Downvote
 from django.contrib.auth import login, authenticate
-from .forms import PostForm
+from .forms import PostForm, EditProfile
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
@@ -107,6 +107,16 @@ def profile(request, username):
         'posts': posts
     }
     return render(request, 'blog/profile.html', context)
+
+#def profile_edit(request, username):
+    user = get_object_or_404(User, username=username)
+    form = EditProfile(request.POST)
+    if form.is_valid():
+        username = form.cleaned_data('newusername')
+    username.save()
+    return redirect('profile', username=request.user.username)
+
+    
 
 def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)

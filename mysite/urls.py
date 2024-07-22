@@ -19,6 +19,7 @@ from django.views.generic import RedirectView
 from django.contrib.auth import views as auth_views
 from blog import views
 from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),  # Admin site
@@ -33,3 +34,6 @@ urlpatterns = [
     path('post/edit/<int:pk>/', views.post_edit, name='post_edit'),
     path('post/delete/<int:pk>/', views.post_delete, name='post_delete'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

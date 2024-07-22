@@ -18,5 +18,4 @@ urlpatterns = [
     path('post/edit/<int:pk>/', views.post_edit, name='post_edit'),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
