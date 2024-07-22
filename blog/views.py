@@ -108,6 +108,7 @@ def profile(request, username):
     }
     return render(request, 'blog/profile.html', context)
 
+<<<<<<< HEAD
 #def profile_edit(request, username):
     user = get_object_or_404(User, username=username)
     form = EditProfile(request.POST)
@@ -124,3 +125,6 @@ def post_delete(request, pk):
         post.delete()
         return redirect('post_list')
     return render(request, 'blog/post_confirm_delete.html', {'post': post})
+=======
+
+>>>>>>> parent of f480b70 (database...)
